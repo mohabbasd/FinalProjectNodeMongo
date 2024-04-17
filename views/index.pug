@@ -1,0 +1,99 @@
+extends layout
+
+block content
+    if user
+        h1.welcome-text Welcome to Movie List
+
+        // CSS styles for the table
+        style.
+            .table-container {
+                margin: 20px;
+            }
+
+            h1 {
+                margin: 20px;
+            }
+
+            .table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .table th,
+            .table td {
+                padding: 8px;
+                border: 1px solid #ddd;
+            }
+
+            .table th {
+                background-color: #f2f2f2;
+                text-align: left;
+            }
+
+            .table tbody tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            .table tbody tr:hover {
+                background-color: #ddd;
+            }
+            .pagination {
+                margin-top: 20px;
+            }
+
+            .page-link {
+                font-size: 16px; /* Increase font size */
+                padding: 10px 20px; /* Increase padding */
+            }
+
+        div.table-container
+            table.table
+                thead
+                    tr
+                        th Title
+                        th Plot
+                        th Genres
+                        th Runtime
+                        th Cast
+                        th Released
+                        th Directors
+                        th Rated
+                        th Year
+                        th Countries
+                        th Type
+                tbody
+                    each movie in movies
+                        tr
+                            td= movie.title
+                            td= movie.plot
+                            td= movie.genres
+                            td= movie.runtime
+                            td= movie.cast
+                            td= movie.released
+                            td= movie.directors
+                            td= movie.rated
+                            td= movie.year
+                            td= movie.countries
+                            td= movie.type
+
+        // Pagination controls
+        form(action="/" method="get" class="form-inline justify-content-center mt-4")
+            div(style="display: inline-block; margin-left: auto;")
+                ul.pagination(style="display: inline-block; margin-left: auto;")
+                    if current > 1
+                        li.page-item(style="display: inline-block;")
+                        button.btn.btn-primary.page-link(type="submit" name="page" value=(current-1)) Previous
+                    if current < pages
+                        li.page-item(style="display: inline-block; margin-left: 5px;")
+                        button.btn.btn-primary.page-link(type="submit" name="page" value=(current+1)) Next
+
+            select(name="perPage" class="form-control mr-2" onchange="this.form.submit()")
+                option(value="5" selected=(perPage === "5"))= "5 per page"
+                option(value="10" selected=(perPage === "10"))= "10 per page"
+                option(value="20" selected=(perPage === "20"))= "20 per page"
+                option(value="30" selected=(perPage === "30"))= "30 per page"
+                option(value="50" selected=(perPage === "50"))= "50 per page"
+            
+            
+    else
+        p(style="font-size: 25px; margin-left: 20px") Please log in to view this content.

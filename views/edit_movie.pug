@@ -1,0 +1,104 @@
+extends layout 
+
+block content 
+    h1= movie.title 
+    form(method="POST" action="/api/movie/edit/" + movie._id)
+        #form-group 
+            label Title:
+            input.form-control(name="title" type="text" value=movie.title)
+            
+        #form-group 
+                label(for="plot") Plot:
+                input.form-control(name="plot", type="text" value=movie.title)
+        
+        #form-group 
+                label(for="genres") Genres:
+                .genres-container(style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; width: 50%")
+                    each genre in genres
+                        label.genres-label
+                            input.form-control(name="genres", type="checkbox", value=genre)
+                            | #{genre}
+
+        #form-group 
+            label(for="runtime") Runtime:
+            input.form-control(name="runtime", type="number" value=movie.runtime)
+            
+        #form-group 
+                label(for="cast") Cast:
+                input.form-control(name="cast", type="text" value=movie.cast)
+
+        #form-group 
+                label(for="num_mflix_comments") Number of Comments:
+                input.form-control(name="num_mflix_comments", type="number" value=movie.num_mflix_comments) 
+
+        #form-group 
+                label(for="poster") Poster URL:
+                input.form-control(name="poster", type="text" value=movie.poster)
+
+        #form-group 
+                label(for="title") Title:
+                input.form-control(name="title", type="text" value=movie.title)
+
+        #form-group 
+                label(for="fullplot") Full Plot:
+                input.form-control(name="fullplot", type="text" value=movie.fullplot)
+
+        #form-group 
+                label(for="released") Released Date:
+                input.form-control(name="released", type="date" value=movie.released)
+
+        #form-group 
+                label(for="awardsWins") Awards Wins:
+                input.form-control(name="awards.wins", type="number" value=movie.awardsWins)
+
+        #form-group 
+                label(for="awardsNominations") Awards Nominations:
+                input.form-control(name="awards.nominations", type="number" value=movie.awardsNominations)
+
+        #form-group 
+                label(for="awardsText") Awards Text:
+                input.form-control(name="awards.text", type="text" value=movie.awardsText)
+
+        #form-group 
+                label(for="lastupdated") Last Updated:
+                input.form-control(name="lastupdated", type="date" value=movie.lastUpdated)
+
+        #form-group 
+                label(for="year") Year:
+                input.form-control(name="year", type="number" value=movie.year)
+
+        #form-group 
+                label(for="imdbRating") IMDb Rating:
+                input.form-control(name="imdb.rating", type="number" value=movie.imdbRating)
+
+        #form-group 
+                label(for="imdbVotes") IMDb Votes:
+                input.form-control(name="imdb.votes", type="number" value=movie.imdbVotes)
+
+        #form-group 
+                label(for="imdbID") IMDb ID:
+                input.form-control(name="imdb.id", type="number" imdbID)
+
+        #form-group 
+                label(for="type") Type:
+                input.form-control(name="type", type="text" value=movie.type)
+
+        #form-group 
+                label(for="tomatoesViewerRating") Tomatoes Viewer Rating:
+                input.form-control(name="tomatoes.viewer.rating", type="number" value=movie.tomatoesViewerRating)
+
+        #form-group 
+                label(for="tomatoesViewerReviews") Tomatoes Viewer Reviews:
+                input.form-control(name="tomatoes.viewer.numReviews", type="number" value=movie.tomatoesViewerReviews)
+
+        #form-group 
+                label(for="tomatoesProduction") Tomatoes Production:
+                input.form-control(name="tomatoes.production", type="text" value=movie.tomatoesProduction)
+
+        #form-group 
+                label(for="tomatoesLastUpdated") Tomatoes Last Updated:
+                input.form-control(name="tomatoes.lastUpdated", type="date" value=movie.tomatoesLastUpdated)
+
+        br
+        input.btn.btn-primary(type="submit" value="Submit")
+

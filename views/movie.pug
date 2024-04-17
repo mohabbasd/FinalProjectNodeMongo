@@ -1,0 +1,73 @@
+extends layout
+
+block content
+    style.
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f1f1f1; /* Light gray background */
+            color: #333; /* Dark gray text color */
+        }
+        .movie-container {
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fff; /* White background for the container */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+            width: 1000px;
+            margin-top: 20px; /* Space between container and top of page */
+        }
+        .movie-title {
+            background-color: #007bff; /* Blue header background color */
+            padding: 10px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            color: white;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .movie-details h5 {
+            font-size: 18px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        .movie-details p {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #444;
+        }
+        .movie-details ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        .movie-details ul li {
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .btn-group {
+            margin-top: 20px;
+            text-align: center; /* Center align buttons */
+        }
+
+    .container
+        .row
+            .col-md-8.mx-auto
+                .card.movie-container
+                    .card-body.movie-details
+                        .movie-title
+                            h1.card-title= movie.title
+                        h5.card-subtitle.mb-2.text-muted Plot: #{movie.plot}
+                        h5.card-subtitle.mb-2.text-muted Type: #{movie.type}
+                        label.card-subtitle.mb-2.text-muted Director(s):
+                        ul
+                            each director in movie.directors
+                                li= director || 'N/A'
+                        p.card-text= movie.imdb.rating ? movie.imdb.rating + ' (IMDb Rating)' : 'N/A'
+                        p.card-text= movie.runtime ? movie.runtime + ' minutes' : 'N/A'
+                        p.card-text= movie.released ? movie.released.toDateString() : 'N/A'
+                        label.card-subtitle.mb-2.text-muted Genres:
+                        ul
+                            each genre in movie.genres
+                                li= genre || 'N/A'
+                        hr

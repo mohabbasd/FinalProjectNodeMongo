@@ -1,0 +1,122 @@
+extends layout
+
+block content
+    //- Loop through and display errors
+    if errors
+        each error in errors 
+            p(style="color:red") #{error.msg}
+
+    h1(style="text-align: center;") Add Movie
+
+    //- Center the form
+    .container(style="max-width: 800px; margin: 20px auto;padding: 0 20px;")
+        .row.justify-content-center
+            .col-md-6
+                form(method="POST", action="/api/movie/add", class="text-center")
+                    //- Create input elements based on movie model
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="plot", style="font-weight: bold;display: block;margin-bottom: 5px;") Plot:
+                        input.form-control(name="plot", type="text",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;" )
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="genres",style="font-weight: bold;display: block;margin-bottom: 5px;") Genres:
+                        //- Wrap genres in a div with a border
+                        .genres-container(style="border: 1px solid #ddd; padding: 10px; margin-bottom: 10px;")
+                            each genre in genres
+                                label.genres-label(style="display: inline-block;padding: 5px 10px;margin: 5px;")
+                                    input.form-control(name="genres", type="checkbox", value=genre, style="margin-right: 5px;")
+                                    | #{genre}
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="runtime",style="font-weight: bold;display: block;margin-bottom: 5px;") Runtime:
+                        input.form-control(name="runtime", type="number",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+                    
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="cast",style="font-weight: bold;display: block;margin-bottom: 5px;") Cast:
+                        input.form-control(name="cast", type="text",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="num_mflix_comments",style="font-weight: bold;display: block;margin-bottom: 5px;") Number of Comments:
+                        input.form-control(name="num_mflix_comments", type="number",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="title",style="font-weight: bold;display: block;margin-bottom: 5px;") Title:
+                        input.form-control(name="title", type="text",,style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="fullplot",style="font-weight: bold;display: block;margin-bottom: 5px;") Full Plot:
+                        input.form-control(name="fullplot", type="text",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="languages",style="font-weight: bold;display: block;margin-bottom: 5px;") Languages:
+                        input.form-control(name="languages", type="text",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="released",style="font-weight: bold;display: block;margin-bottom: 5px;") Released Date:
+                        input.form-control(name="released", type="date",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="directors",style="font-weight: bold;display: block;margin-bottom: 5px;") Directors:
+                        input.form-control(name="directors", type="text",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="rated",style="font-weight: bold;display: block;margin-bottom: 5px;") Rated:
+                        input.form-control(name="rated", type="text",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="awardsWins",style="font-weight: bold;display: block;margin-bottom: 5px;") Awards Wins:
+                        input.form-control(name="awards.wins", type="number",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="awardsNominations",style="font-weight: bold;display: block;margin-bottom: 5px;") Awards Nominations:
+                        input.form-control(name="awards.nominations", type="number",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="awardsText",style="font-weight: bold;display: block;margin-bottom: 5px;") Awards Text:
+                        input.form-control(name="awards.text", type="text",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="lastupdated",style="font-weight: bold;display: block;margin-bottom: 5px;") Last Updated:
+                        input.form-control(name="lastupdated", type="date",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="year",style="font-weight: bold;display: block;margin-bottom: 5px;") Year:
+                        input.form-control(name="year", type="number",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="imdbRating",style="font-weight: bold;display: block;margin-bottom: 5px;") IMDb Rating:
+                        input.form-control(name="imdb.rating", type="number",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="imdbVotes",style="font-weight: bold;display: block;margin-bottom: 5px;") IMDb Votes:
+                        input.form-control(name="imdb.votes", type="number",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="imdbID",style="font-weight: bold;display: block;margin-bottom: 5px;") IMDb ID:
+                        input.form-control(name="imdb.id", type="number",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="countries",style="font-weight: bold;display: block;margin-bottom: 5px;") Countries:
+                        input.form-control(name="countries", type="text",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="type",style="font-weight: bold;display: block;margin-bottom: 5px;") Type:
+                        input.form-control(name="type", type="text",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="tomatoesViewerRating",style="font-weight: bold;display: block;margin-bottom: 5px;") Tomatoes Viewer Rating:
+                        input.form-control(name="tomatoes.viewer.rating", type="number",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="tomatoesViewerReviews",style="font-weight: bold;display: block;margin-bottom: 5px;") Tomatoes Viewer Reviews:
+                        input.form-control(name="tomatoes.viewer.numReviews", type="number",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="tomatoesProduction",style="font-weight: bold;display: block;margin-bottom: 5px;") Tomatoes Production:
+                        input.form-control(name="tomatoes.production", type="text",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    .form-group(style="margin-bottom: 20px;")
+                        label(for="tomatoesLastUpdated",style="font-weight: bold;display: block;margin-bottom: 5px;") Tomatoes Last Updated:
+                        input.form-control(name="tomatoes.lastUpdated", type="date",style="width: 50%;padding: 10px;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;")
+
+                    input.btn.btn-primary(type="submit", value="Submit", style="background-color: #007bff;color: white;border: none;padding: 10px 20px;cursor: pointer; border-radius: 5px;")
